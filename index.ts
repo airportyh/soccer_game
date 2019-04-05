@@ -335,19 +335,14 @@ function render(ctx: CanvasRenderingContext2D) {
     ball.render(ctx);
 }
 
+let shootState: "open" | "holding" = "open";
+let holdStartTime;
+
 window.addEventListener("keydown", (event) => {
     const player = players[currentPlayerIdx];
-    if (event.key === " ") {
-        player.shoot();
-        if (distance(player.feetPosition(), ball) < 785) {
-            if (player.direction === "right") {
-                ball.accelerateX(3.14159265358);
-            } else if (player.direction === "left") {
-                ball.accelerateX(-5);
-            }
-        } else {
-            console.log("ball not going");
-        }
+    if (event.key === " " && shootState === "open") {
+        shootState = "holding";
+        holdStartTime = new Date().getTime();
     }
     if (event.key === "Enter") {
         player.slide();
@@ -361,6 +356,22 @@ window.addEventListener("keydown", (event) => {
 
 window.addEventListener("keyup", (event) => {
     keyStates[event.key] = false;
+    const player = players[currentPlayerIdx];
+    if (shootState === "holding") {
+        shootState = "open";
+        const timeInterval = new Date().getTime() - holdStartTime;
+        const acceleration = timeInterval / 10;
+        player.shoot();
+        if (distance(player.feetPosition(), ball) < 785) {
+            if (player.direction === "right") {
+                ball.accelerateX(acceleration);
+            } else if (player.direction === "left") {
+                ball.accelerateX(-acceleration);
+            }
+        } else {
+            console.log("ball not going");
+        }
+    }
 });
 
 window.addEventListener("dblclick", (event: MouseEvent) => {
