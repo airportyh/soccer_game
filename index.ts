@@ -289,6 +289,7 @@ const player1: Player = new Player(200, 280, 1);
 const player2: Player = new Player(400, 280, 1);
 const player3: Player = new Player(300, 280, 1);
 const player4: Player = new Player(900, 280, 1);
+<<<<<<< HEAD
 const player5: Player = new Player(700, 280, 1);
 const player6: Player = new Player(800, 280, 1);
 const player7: Player = new Player(1000, 280,1);
@@ -307,6 +308,22 @@ const player19: Player = new Player(996, 280,2);
 const player20: Player = new Player(576, 280,2);
 const player21: Player = new Player(334, 280,2);
 const player22: Player = new Player(43, 280,2);
+=======
+const player5: Player = new Player(700, 280, 5);
+const player6: Player = new Player(800, 280, 4);
+const player7: Player = new Player(1000, 280,3);
+const player8: Player = new Player(999, 280,3);
+const player9: Player = new Player(589, 280,3);
+const player10: Player = new Player(583, 280,2);
+const player11: Player = new Player(80, 280,3);
+const player12: Player = new Player(582, 280,3);
+const player13: Player = new Player(577, 280,3);
+const player14: Player = new Player(563, 280,3);
+const player15: Player = new Player(863, 280,3);
+const player16: Player = new Player(431, 280,3);
+const player17: Player = new Player(693, 511,3);
+
+>>>>>>> 4ba0d1fed9ffec0ef3f839d54e03bec09a60d91e
 const players: Player[] = [
     player1,
     player2,
@@ -342,6 +359,10 @@ function render(ctx: CanvasRenderingContext2D) {
         player.render(ctx);
     }
     ball.render(ctx);
+    if (cursorX && cursorY) {
+        ctx.textBaseline = "top";
+        ctx.fillText(`(${cursorX}, ${cursorY})`, 0, 0);
+    }
 }
 
 let shootState: "open" | "holding" = "open";
@@ -388,6 +409,14 @@ window.addEventListener("keyup", (event) => {
             console.log("ball not going");
         }
     }
+});
+
+let cursorX: number;
+let cursorY: number;
+
+window.addEventListener("mousemove", (e) => {
+    cursorX = e.pageX;
+    cursorY = e.pageY;
 });
 
 window.addEventListener("dblclick", (event: MouseEvent) => {
