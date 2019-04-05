@@ -291,6 +291,17 @@ const player3: Player = new Player(300, 280, 1);
 const player4: Player = new Player(900, 280, 3);
 const player5: Player = new Player(700, 280, 3);
 const player6: Player = new Player(800, 280, 3);
+const player7: Player = new Player(1000, 280,3);
+const player8: Player = new Player(999, 280,3);
+const player9: Player = new Player(589, 280,3);
+const player10: Player = new Player(583, 280,3);
+const player11: Player = new Player(80, 280,3);
+const player12: Player = new Player(582, 280,3);
+const player13: Player = new Player(577, 280,3);
+const player14: Player = new Player(563, 280,3);
+const player15: Player = new Player(863, 280,3);
+const player16: Player = new Player(431, 280,3);
+const player17: Player = new Player(229, 280,3);
 
 const players: Player[] = [
     player1,
@@ -298,7 +309,18 @@ const players: Player[] = [
     player3,
     player4,
     player5,
-    player6
+    player6,
+    player7,
+    player8,
+    player9,
+    player10,
+    player11,
+    player12,
+    player13,
+    player14,
+    player15,
+    player16,
+    player17
 ];
 
 let currentPlayerIdx = 0;
@@ -319,7 +341,7 @@ window.addEventListener("keydown", (event) => {
         player.shoot();
         if (distance(player.feetPosition(), ball) < 785) {
             if (player.direction === "right") {
-                ball.accelerateX(52);
+                ball.accelerateX(3.14159265358);
             } else if (player.direction === "left") {
                 ball.accelerateX(-5);
             }
