@@ -288,21 +288,25 @@ function * animationSequence(playerNumber: number, action: Action, loop: boolean
 const player1: Player = new Player(200, 280, 1);
 const player2: Player = new Player(400, 280, 1);
 const player3: Player = new Player(300, 280, 1);
-const player4: Player = new Player(900, 280, 3);
-const player5: Player = new Player(700, 280, 3);
-const player6: Player = new Player(800, 280, 3);
-const player7: Player = new Player(1000, 280,3);
-const player8: Player = new Player(999, 280,3);
-const player9: Player = new Player(589, 280,3);
-const player10: Player = new Player(583, 280,3);
-const player11: Player = new Player(80, 280,3);
-const player12: Player = new Player(582, 280,3);
-const player13: Player = new Player(577, 280,3);
-const player14: Player = new Player(563, 280,3);
-const player15: Player = new Player(863, 280,3);
-const player16: Player = new Player(431, 280,3);
-const player17: Player = new Player(229, 280,3);
-
+const player4: Player = new Player(900, 280, 1);
+const player5: Player = new Player(700, 280, 1);
+const player6: Player = new Player(800, 280, 1);
+const player7: Player = new Player(1000, 280,1);
+const player8: Player = new Player(999, 280,1);
+const player9: Player = new Player(589, 280,1);
+const player10: Player = new Player(583, 280,1);
+const player11: Player = new Player(80, 280,1);
+const player12: Player = new Player(582, 280,2);
+const player13: Player = new Player(577, 280,2);
+const player14: Player = new Player(563, 280,2);
+const player15: Player = new Player(863, 280,2);
+const player16: Player = new Player(431, 280,2);
+const player17: Player = new Player(229, 280,2);
+const player18: Player = new Player(6784, 280,2);
+const player19: Player = new Player(996, 280,2);
+const player20: Player = new Player(576, 280,2);
+const player21: Player = new Player(334, 280,2);
+const player22: Player = new Player(43, 280,2);
 const players: Player[] = [
     player1,
     player2,
@@ -320,7 +324,12 @@ const players: Player[] = [
     player14,
     player15,
     player16,
-    player17
+    player17,
+    player18,
+    player19,
+    player20,
+    player21,
+    player22
 ];
 
 let currentPlayerIdx = 0;
