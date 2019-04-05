@@ -292,26 +292,35 @@ const player4: Player = new Player(900, 280, 3);
 const player5: Player = new Player(700, 280, 3);
 const player6: Player = new Player(800, 280, 3);
 
+const players: Player[] = [
+    player1,
+    player2,
+    player3,
+    player4,
+    player5,
+    player6
+];
+
+let currentPlayerIdx = 0;
+
 const ball: Ball = new Ball(canvasWidth / 2, canvasHeight / 2);
 
 function render(ctx: CanvasRenderingContext2D) {
     ctx.drawImage(pitchImg, 0, 0, canvasWidth, canvasHeight);
-    player1.render(ctx);
-    player2.render(ctx);
-    player3.render(ctx);
-    player4.render(ctx);
-    player5.render(ctx);
-    player6.render(ctx);
+    for (let player of players) {
+        player.render(ctx);
+    }
     ball.render(ctx);
 }
 
 window.addEventListener("keydown", (event) => {
+    const player = players[currentPlayerIdx];
     if (event.key === " ") {
-        player1.shoot();
-        if (distance(player1.feetPosition(), ball) < 785) {
-            if (player1.direction === "right") {
+        player.shoot();
+        if (distance(player.feetPosition(), ball) < 785) {
+            if (player.direction === "right") {
                 ball.accelerateX(52);
-            } else if (player1.direction === "left") {
+            } else if (player.direction === "left") {
                 ball.accelerateX(-5);
             }
         } else {
@@ -319,7 +328,11 @@ window.addEventListener("keydown", (event) => {
         }
     }
     if (event.key === "Enter") {
-        player1.slide();
+        player.slide();
+    }
+    const num = Number(event.key);
+    if (num >= 1 && num <= 6) {
+        currentPlayerIdx = num - 1;
     }
     keyStates[event.key] = true;
 });
@@ -336,48 +349,22 @@ window.addEventListener("dblclick", (event: MouseEvent) => {
 });
 
 function update() {
+    const player = players[currentPlayerIdx];
     if (keyStates.ArrowRight) {
-        player1.accelerateX(3);
+        player.accelerateX(3);
     }
     if (keyStates.ArrowLeft) {
-        player1.accelerateX(-3);
+        player.accelerateX(-3);
     }
     if (keyStates.ArrowUp) {
-        player1.accelerateY(-2);
+        player.accelerateY(-2);
     }
     if (keyStates.ArrowDown) {
-        player1.accelerateY(2);
+        player.accelerateY(2);
     }
-    if (keyStates.d) {
-        player2.accelerateX(0.01);
+    for (let player of players) {
+        player.update();
     }
-    if (keyStates.a) {
-        player2.accelerateX(-0.01);
-    }
-    if (keyStates.w) {
-        player2.accelerateY(-2);
-    }
-    if (keyStates.s) {
-        player2.accelerateY(2);
-    }
-    if (keyStates.h) {
-        player3.accelerateX(0.01);
-    }
-    if (keyStates.l) {
-        player3.accelerateX(-0.01);
-    }
-    if (keyStates.i) {
-        player3.accelerateY(-2);
-    }
-    if (keyStates.k) {
-        player3.accelerateY(2);
-    }
-    player1.update();
-    player2.update();
-    player3.update();
-    player4.update();
-    player5.update();
-    player6.update();
     ball.update();
 }
 
