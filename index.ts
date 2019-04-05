@@ -347,6 +347,13 @@ window.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         player.slide();
     }
+    if (event.key === "Tab") {
+        currentPlayerIdx++;
+        if (currentPlayerIdx >= players.length) {
+            currentPlayerIdx = 0;
+        }
+        event.preventDefault();
+    }
     const num = Number(event.key);
     if (num >= 1 && num <= 6) {
         currentPlayerIdx = num - 1;
